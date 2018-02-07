@@ -1,0 +1,9 @@
+Compilation order (areaDetector 3-2)
+Date: 2018-2-7
+
+seq, ipac, autosave, | caPutLog
+asyn, devIocStats, busy, sscan
+ipUnidac, calc, std
+mca
+areaDetector
+quadEM

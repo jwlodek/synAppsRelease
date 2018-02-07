@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Building areaDetector from source
+# http://www.smolloy.com/2017/10/build-areadetector-for-epics-from-source/
+
+# System Libraries
+#sudo apt install re2c xml2 libxml2 git zlib1g-dev libnetcdf-dev libxml2-dev
+
+#EPICS depencencies
+#asyn
+#autosave
+#busy
+#seq
+#sscan
+#calc
+#devIocStats
+
+git clone https://github.com/EPICS-synApps/support
+cd support
+git clone https://github.com/EPICS-synApps/configure
+# Edit configure/RELEAES and choose versions
+# 
+git clone https://github.com/epics-modules/asyn
+git clone https://github.com/epics-modules/autosave
+git clone https://github.com/epics-modules/busy
+git clone https://github.com/epics-modules/sscan
+git clone https://github.com/epics-modules/calc
+git clone https://github.com/epics-modules/iocStats
+wget http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-2.2.5.tar.gz
+tar -xvzf seq-2.2.5.tar.gz
+git clone --recursive https://github.com/areaDetector/areaDetector.git
+
+# Sort out releases ('git checkout master' for most recent)
+cd areaDetector/ADCore
+git checkout R3-1
+cd ../..
+# ... many more modules here
+
+# Continue with support/configure
+# at top of the support issue 'make release', which will sync the RELEASE for all files,
+# including areaDetector
+
+
+
+
+

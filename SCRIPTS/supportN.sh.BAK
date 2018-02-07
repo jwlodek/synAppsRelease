@@ -1,0 +1,74 @@
+#!/bin/bash
+
+supportDir=support5
+# Do not overwrite existing directory
+if [ -d $supportDir ]
+then
+    echo "$supportDir exists"
+    exit
+fi
+mkdir $supportDir
+cd $supportDir
+
+git clone --recursive https://github.com/areaDetector/areaDetector.git
+git clone https://github.com/epics-modules/quadEM
+
+# from directory  /epics/areadetector/
+# git pull --recurse-submodules
+
+#git clone https://github.com/areaDetector/areaDetector
+#sleep 1
+#cd areaDetector
+#git clone https://github.com/areaDetector/ADCore
+#git clone https://github.com/areaDetector/ADMerlin
+#git clone https://github.com/areaDetector/ADPCO
+#git clone https://github.com/areaDetector/ADCameralink
+#git clone https://github.com/areaDetector/ADPilatus
+#git clone https://github.com/areaDetector/ADExample
+#git clone https://github.com/areaDetector/ADSupport
+#git clone https://github.com/areaDetector/ADProsilica
+#git clone https://github.com/areaDetector/ADMythen
+#git clone https://github.com/areaDetector/ADPixirad
+#git clone https://github.com/areaDetector/aravisGigE
+#git clone https://github.com/areaDetector/ADFastCCD
+#git clone https://github.com/areaDetector/ADBinaries
+#git clone https://github.com/areaDetector/ADAndor
+#git clone https://github.com/areaDetector/ADPointGrey
+#git clone https://github.com/areaDetector/ffmpegServer
+
+#git clone https://github.com/areaDetector/ADSBIG
+#git clone https://github.com/areaDetector/ADnED
+
+#git clone https://github.com/areaDetector/ADLambda
+#git clone https://github.com/areaDetector/ADPerkinElmer
+#git clone https://github.com/areaDetector/ADPICam
+#git clone https://github.com/areaDetector/ADmarCCD
+#git clone https://github.com/areaDetector/ADmar345
+#git clone https://github.com/areaDetector/ADURL
+#git clone https://github.com/areaDetector/ADRoper
+#git clone https://github.com/areaDetector/ADQImaging
+#git clone https://github.com/areaDetector/ADPvCam
+#git clone https://github.com/areaDetector/ADPSL
+#git clone https://github.com/areaDetector/ADFireWireWin
+#git clone https://github.com/areaDetector/ADDexela
+#git clone https://github.com/areaDetector/ADAndor3
+#git clone https://github.com/areaDetector/ADBruker
+#git clone https://github.com/areaDetector/ADADSC
+#git clone https://github.com/areaDetector/ADLightField
+#git clone https://github.com/areaDetector/firewireDCAM
+#git clone https://github.com/areaDetector/ADPluginEdge
+#git clone https://github.com/areaDetector/ffmpegViewer
+
+# PCIe EVR on powerBrick v.3.0.1, Biffiger Roger (Roger.Biffiger@psi.ch)
+# Requires PCI VME support library devlib2
+# git clone https://github.com/pauscherrerinstitute/mrfioc2
+#git clone https://github.com/kgofron/mrfioc2
+# git clone https://github.com/kgofron/devlib2
+#git clone https://github.com/epics-modules/devlib2
+
+# medm is now (2017-7-15) on github.com/epics-extensions/medm
+#git clone https://github.com/epics-extensions/medm
+#https://github.com/epics-extensions/medm/archive/MEDM3_1_14.tar.gz
+
+
+
