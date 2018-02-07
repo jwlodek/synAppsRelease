@@ -1,0 +1,7 @@
+# Downloads SNS nightly
+https://ics-web.sns.ornl.gov/css/nightly
+
+
+./css -nosplash -application org.csstudio.opibuilder.adl2boy.application ../areaDetector/ADAndor3/andor3App/op/adl/Andor3.adl 
+
+./css -nosplash -application org.csstudio.opibuilder.adl2boy.application ../areaDetector/ADDexela/dexelaApp/op/adl/Dexela.adl ../areaDetector/ADAndor3/andor3App/op/adl/Andor3.adl
