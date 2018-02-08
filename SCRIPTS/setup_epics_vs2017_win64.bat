@@ -1,4 +1,5 @@
 rem This file sets up for an EPICS windows-x64 build
+REM https://epics.anl.gov/tech-talk/2015/msg01582.php
 
 set EPICS_HOST_ARCH=windows-x64
 
