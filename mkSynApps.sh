@@ -9,6 +9,12 @@
 # edit for local choices
 #bash assemble_synApps.sh
 
+# ##########################
+# On Windows x64 specify location
+# EPICS_BASE in support/configure/EPICS_BASE.windows-x64
+# SUPPORT in support/configure/SUPPORT.windows-x64
+# ##########################
+
 # ################################
 # assemble_synApps.sh modified to AreaDetector 3.2 onley
 # ================================
