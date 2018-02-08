@@ -99,3 +99,12 @@ cd ADDexela; git checkout master; cd ..
 #git clone https://github.com/epics-extensions/medm; cd /epics/extensions/src/medm; git checkout MEDM3_1_14; 
 #https://github.com/epics-extensions/medm/archive/MEDM3_1_14.tar.gz
 # Need msi from https://epics.anl.gov/extensions/msi/
+
+# ######################################
+# EPICS 7 base is cheeky, since submodules need to be pulled into 
+# epics-base/modules/[ca,database,libcom,normativeTypes,pvData,pvDatabase,pva2pva,pvaClient]
+# https://epics.anl.gov/base/R7-0/index.php
+# ================================
+#git clone -b core/master https://git.launchpad.net/epics-base base-7.0
+#cd base-7.0
+#git submodule update --init --reference ./
