@@ -44,8 +44,8 @@ cd ADDexela; git checkout master; cd ..
 # Date: 2018-2-7
 # ====================================
 #seq, ipac, autosave, | caPutLog
-#asyn, devIocStats, busy, sscan
-#ipUnidac, calc, std
+#asyn, devIocStats, sscan
+#busy, ipUnidac, calc, std
 #mca
 #areaDetector
 #quadEM
