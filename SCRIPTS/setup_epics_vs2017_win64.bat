@@ -6,7 +6,7 @@ set EPICS_HOST_ARCH=windows-x64
 rem These are the locations of "make", "re2c", "Perl", and EPICS base.  Prepend them to the PATH.
 
 rem set PATH=C:\Program Files (x86)\GnuWin32\bin;C:\Program Files (x86)\re2c;C:\Perl64\bin;H:\epics\base\bin\windows-x64;%PATH%
-set PATH=C:\MinGW\bin;C:\epics\re2c-0.13.5-bin\re2c;C:\Strawberry\perl\bin;C:\epics\base-3.15.5\bin\windows-x64;%PATH%
+set PATH=C:\MinGW\bin;C:\epics\re2c-0.13.5-bin;C:\Strawberry\perl\bin;C:\epics\base-3.15.5\bin\windows-x64;%PATH%
 
 rem Execute the Visual Studio batch file for 64-bit builds
 
