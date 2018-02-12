@@ -92,7 +92,7 @@ full_repo()
 
 shallow_support()
 {
-	git clone -q --branch $2 --depth 1 git://github.com/EPICS-synApps/$1.git
+	git clone -q --branch $2 --depth 1 https://github.com/EPICS-synApps/$1.git
 }
 
 
