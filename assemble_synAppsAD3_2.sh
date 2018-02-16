@@ -79,11 +79,14 @@ full_repo()
 	
 	git clone -q https://github.com/$PROJECT/$MODULE_NAME.git $FOLDER_NAME
 	
+	#CURR=$(pwd)
+	#printf -v CURR "%q" "$(pwd)"
 	CURR=$(pwd)
+	echo $CURR
 	
 	cd $FOLDER_NAME
 	git checkout -q $TAG
-	cd $CURR
+	cd "$CURR"
 	echo "$RELEASE_NAME=\$(SUPPORT)/$FOLDER_NAME" >> ./configure/RELEASE
 	
 	echo
