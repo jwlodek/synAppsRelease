@@ -93,6 +93,36 @@ full_repo()
 }
 
 
+full_repo_submodule()
+{
+	PROJECT=$1
+	MODULE_NAME=$2
+	RELEASE_NAME=$3
+	TAG=$4
+	
+	FOLDER_NAME=$MODULE_NAME-${TAG//./-}
+	
+	echo
+	echo "Grabbing $MODULE_NAME at tag: $TAG"
+	echo
+	
+	git clone -q --recursive https://github.com/$PROJECT/$MODULE_NAME.git $FOLDER_NAME
+	
+	#CURR=$(pwd)
+	#printf -v CURR "%q" "$(pwd)"
+	CURR=$(pwd)
+	echo $CURR
+	
+	cd $FOLDER_NAME
+	git checkout -q $TAG
+	git submodule foreach --recursive git checkout master
+	# git submodule update --init --recursive	# It doesn't checkout master, just all the submodules!
+	cd "$CURR"
+	echo "$RELEASE_NAME=\$(SUPPORT)/$FOLDER_NAME" >> ./configure/RELEASE
+	
+	echo
+}
+
 shallow_support()
 {
 	git clone -q --branch $2 --depth 1 https://github.com/EPICS-synApps/$1.git
