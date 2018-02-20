@@ -1,7 +1,7 @@
 #!/bin/bash
 shopt -s expand_aliases
 
-EPICS_BASE=/APSshare/epics/base-3.15.5
+EPICS_BASE=/epics/base-3.15.5
 
 SUPPORT=synApps_5_8
 CONFIGURE=synApps_5_8
@@ -10,11 +10,11 @@ DOCUMENTATION=synApps_5_8
 
 #ALLENBRADLEY=2.3
 #ALIVE=R1-0-1
-AREA_DETECTOR=3-2
-ASYN=4-33
-AUTOSAVE=5-9
-BUSY=1-7
-CALC=3-7
+AREA_DETECTOR=R3-2
+ASYN=R4-33
+AUTOSAVE=R5-9
+BUSY=R1-7
+CALC=R3-7
 #CAMAC=R2-7
 #CAPUTRECORDER=R1-6
 #DAC128V=R2-8
@@ -24,9 +24,9 @@ DEVIOCSTATS=3.1.15
 #IP=R2-10
 IPAC=2.14
 #IP330=R2-8
-IPUNIDIG=2-11
+IPUNIDIG=R2-11
 #LOVE=R3-2-5
-MCA=7-7
+MCA=R7-7
 #MEASCOMP=R1-3-1
 #MODBUS=R2-9
 #MOTOR=R6-9
@@ -34,9 +34,9 @@ MCA=7-7
 #QUADEM=R7-0
 SNCSEQ=2.2.5
 #SOFTGLUE=R2-8
-SSCAN=2-11-1
-STD=3-4-1
-STREAM=2-7-7
+SSCAN=R2-11-1
+STD=R3-4-1
+STREAM=R2-7-7
 #VAC=R1-5-1
 #VME=R2-8-2
 #XXX=R5-8
@@ -51,7 +51,13 @@ shallow_repo()
 	RELEASE_NAME=$3
 	TAG=$4
 	
-	FOLDER_NAME=$MODULE_NAME-${TAG//./-}
+        # Remove R from TAG, and replace . with -
+        if [[ $TAG =~ [R] ]]; then
+            TAG_T=${TAG//R/}
+        else
+            TAG_T=$TAG
+        fi
+	FOLDER_NAME=$MODULE_NAME-${TAG_T//./-}
 	
 	echo
 	echo "Grabbing $MODULE_NAME at tag: $TAG"
@@ -70,8 +76,14 @@ full_repo()
 	MODULE_NAME=$2
 	RELEASE_NAME=$3
 	TAG=$4
-	
-	FOLDER_NAME=$MODULE_NAME-${TAG//./-}
+
+        # Remove R from TAG, and replace . with -
+        if [[ $TAG =~ [R] ]]; then
+            TAG_T=${TAG//R/}
+        else
+            TAG_T=$TAG
+        fi
+        FOLDER_NAME=$MODULE_NAME-${TAG_T//./-}
 	
 	echo
 	echo "Grabbing $MODULE_NAME at tag: $TAG"
@@ -92,15 +104,20 @@ full_repo()
 	echo
 }
 
-
 full_repo_submodule()
 {
 	PROJECT=$1
 	MODULE_NAME=$2
 	RELEASE_NAME=$3
 	TAG=$4
-	
-	FOLDER_NAME=$MODULE_NAME-${TAG//./-}
+
+        # Remove R from TAG, and replace . with -
+        if [[ $TAG =~ [R] ]]; then
+            TAG_T=${TAG//R/}
+        else
+            TAG_T=$TAG
+        fi
+        FOLDER_NAME=$MODULE_NAME-${TAG_T//./-}
 	
 	echo
 	echo "Grabbing $MODULE_NAME at tag: $TAG"
@@ -115,13 +132,12 @@ full_repo_submodule()
 	
 	cd $FOLDER_NAME
 	git checkout -q $TAG
-	git submodule foreach --recursive git checkout master
-	# git submodule update --init --recursive	# It doesn't checkout master, just all the submodules!
 	cd "$CURR"
 	echo "$RELEASE_NAME=\$(SUPPORT)/$FOLDER_NAME" >> ./configure/RELEASE
 	
 	echo
 }
+
 
 shallow_support()
 {
@@ -204,7 +220,7 @@ then
 
 get_repo  epics-modules  stream  STREAM  $STREAM
 
-cd stream-$STREAM
+cd stream-${STREAM//R/}
 git submodule init
 git submodule update
 cd ..
@@ -215,9 +231,9 @@ fi
 if [[ $AREA_DETECTOR ]]
 then 
 
-get_repo  areaDetector  areaDetector  AREA_DETECTOR  $AREA_DETECTOR
-
-cd areaDetector-$AREA_DETECTOR
+full_repo_submodule areaDetector areaDetector AREA_DETECTOR  $AREA_DETECTOR
+echo "areaDetector $AREA_DETECTOR"
+cd areaDetector-${AREA_DETECTOR//R/}
 git submodule foreach --recursive git checkout master
 # git submodule update --init --recursive	# It doesn't checkout master, just all the submodules!
 cd ..
