@@ -20,28 +20,29 @@
 # ================================
 bash assemble_synAppsAD3_2.sh full
 cd synApps/support
-sed -i "s/^EPICS_BASE=.*/EPICS_BASE=\/epics\/base-3.15.5/" configure/RELEASE
+#sed -i "s/^EPICS_BASE=.*/EPICS_BASE=\/epics\/base-3.15.5/" configure/RELEASE
+sed -i "s/^EPICS_BASE=.*/EPICS_BASE=\/epics\/base-7.0.1/" configure/RELEASE
 make release
 
-git clone https://github.com/areaDetector/areaDetector
-cd areaDetector
-git clone https://github.com/areaDetector/ADCore
-git clone https://github.com/areaDetector/ADSupport
-git clone https://github.com/areaDetector/ADSimDetector
+#git clone https://github.com/areaDetector/areaDetector
+#cd areaDetector
+#git clone https://github.com/areaDetector/ADCore
+#git clone https://github.com/areaDetector/ADSupport
+#git clone https://github.com/areaDetector/ADSimDetector
 #git clone https://github.com/areaDetector/ADProsilica
 #git clone https://github.com/areaDetector/ADAndor3
-git clone https://github.com/areaDetector/ADDexela
+#git clone https://github.com/areaDetector/ADDexela
 
 
 # Sort out releases ('git checkout master' for most recent)
-git checkout R3-2; 
-cd ADCore; git checkout R3-2; cd ..
-cd ADSupport; git checkout R1-4; cd ..
-cd ADSimDetector; git checkout R2-7; cd ..
+#git checkout R3-2; 
+#cd ADCore; git checkout R3-2; cd ..
+#cd ADSupport; git checkout R1-4; cd ..
+#cd ADSimDetector; git checkout R2-7; cd ..
 #cd ADProsilica; git checkout R2-4; cd ..
 #cd ADAndor3; git checkout R2-2; cd ..
 #cd ADDexela; git checkout R2-1; cd ..
-cd ADDexela; git checkout master; cd ..
+#cd ADDexela; git checkout master; cd ..
 
 # Edit AreaDetector/configure/RELEASE... file system
 

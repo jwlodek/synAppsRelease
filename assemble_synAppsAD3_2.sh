@@ -10,7 +10,7 @@ DOCUMENTATION=synApps_5_8
 
 #ALLENBRADLEY=2.3
 #ALIVE=R1-0-1
-#AREA_DETECTOR=R3-2
+AREA_DETECTOR=3-2
 ASYN=4-33
 AUTOSAVE=5-9
 BUSY=1-7
@@ -188,11 +188,16 @@ then
 get_repo  areaDetector  areaDetector  AREA_DETECTOR  $AREA_DETECTOR
 
 cd areaDetector-$AREA_DETECTOR
-git submodule init
-git submodule update ADCore
-git submodule update ADSupport
-git submodule update ADSimDetector
+git submodule foreach --recursive git checkout master
+# git submodule update --init --recursive	# It doesn't checkout master, just all the submodules!
 cd ..
+
+#cd areaDetector-$AREA_DETECTOR
+#git submodule init
+#git submodule update ADCore
+#git submodule update ADSupport
+#git submodule update ADSimDetector
+#cd ..
 
 echo 'ADCORE=$(AREA_DETECTOR)/ADCore' >> ./configure/RELEASE
 echo 'ADSUPPORT=$(AREA_DETECTOR)/ADSupport' >> ./configure/RELEASE
