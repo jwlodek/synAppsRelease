@@ -221,6 +221,7 @@ then
 get_repo  epics-modules  stream  STREAM  $STREAM
 
 cd stream-${STREAM//R/}
+git checkout master
 git submodule init
 git submodule update
 cd ..
@@ -234,6 +235,7 @@ then
 full_repo_submodule areaDetector areaDetector AREA_DETECTOR  $AREA_DETECTOR
 echo "areaDetector $AREA_DETECTOR"
 cd areaDetector-${AREA_DETECTOR//R/}
+git checkout master
 git submodule foreach --recursive git checkout master
 # git submodule update --init --recursive	# It doesn't checkout master, just all the submodules!
 cd ..
