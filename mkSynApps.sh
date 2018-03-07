@@ -69,6 +69,7 @@ make release
 # git tag
 # git tag -l R4-3* # Match pattern defined by -l
 # git show-ref --tags -d
+# git diff --name-status Release-2-6
 # git checkout -b R7-7
 # ***********************
 
