@@ -69,9 +69,15 @@ make release
 # git tag
 # git tag -l R4-3* # Match pattern defined by -l
 # git show-ref --tags -d
-# git diff --name-status Release-2-6
+# git diff --name-status Release-2-6   ; difference since R-2-6
+# git log origin/master..HEAD          ; unpushed changes; similar to 'hg outgoing'
+# git diff origin/master..HEAD         ; Actual changes
+# git log --stat origin/master..HEAD
+# git log --branches --not --remotes   ; Commits not yet pushed on all branches
+# git log --branches --not --remotes --simplify-by-decoration --decorate --oneline   ; most recent commit on each branch and branch name
 # git checkout -b R7-7
 # ***********************
+# git config --global alias.ahead "log origin/master..HEAD --oneline"    ; git ahead
 
 # ###############################
 # AreaDetector recursively cloned
