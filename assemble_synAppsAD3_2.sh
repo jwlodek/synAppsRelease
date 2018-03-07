@@ -8,9 +8,10 @@ CONFIGURE=synApps_5_8
 UTILS=synApps_5_8
 DOCUMENTATION=synApps_5_8
 
+BASE=R7.0.1.1
 #ALLENBRADLEY=2.3
 #ALIVE=R1-0-1
-AREA_DETECTOR=R3-2
+#AREA_DETECTOR=R3-2
 ASYN=R4-33
 AUTOSAVE=R5-9
 BUSY=R1-7
@@ -215,6 +216,8 @@ if [[ $VME ]];           then   get_repo epics-modules  vme            VME      
 if [[ $XXX ]];           then   get_repo epics-modules  xxx            XXX            $XXX           ; fi
 
 
+
+
 if [[ $STREAM ]]
 then
 
@@ -235,7 +238,7 @@ then
 full_repo_submodule areaDetector areaDetector AREA_DETECTOR  $AREA_DETECTOR
 echo "areaDetector $AREA_DETECTOR"
 cd areaDetector-${AREA_DETECTOR//R/}
-git checkout master
+#git checkout master
 git submodule foreach --recursive git checkout master
 # git submodule update --init --recursive	# It doesn't checkout master, just all the submodules!
 cd ..
@@ -293,5 +296,28 @@ echo 'ETHERIP=$(SUPPORT)/ether_ip-2-26' >> ./configure/RELEASE
 
 fi
 
-
 make release
+
+# Pull the base from repo into synApp, and same level as support
+cd ..
+if [[ $BASE ]]
+then 
+
+    full_repo_submodule epics-base epics-base BASE  $BASE
+    echo "epics-base $BASE"
+    # Remove R from BASE, and replace . with -
+    BASE_T=$BASE
+    if [[ $BASE =~ [R] ]]; then
+        BASE_T=${BASE//R/}
+    else
+        BASE_T=$BASE
+    fi
+    cd "epics-base-${BASE_T//./-}"
+    echo $PWD
+    #git checkout master
+    git submodule update --init --reference ./
+    #git submodule foreach --recursive git checkout master
+    # git submodule update --init --recursive	# It doesn't checkout master, just all the submodules!
+    cd ..
+
+fi
