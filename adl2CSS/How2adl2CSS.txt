@@ -5,3 +5,11 @@ https://ics-web.sns.ornl.gov/css/nightly
 ./css -nosplash -application org.csstudio.opibuilder.adl2boy.application ../areaDetector/ADAndor3/andor3App/op/adl/Andor3.adl 
 
 ./css -nosplash -application org.csstudio.opibuilder.adl2boy.application ../areaDetector/ADDexela/dexelaApp/op/adl/Dexela.adl ../areaDetector/ADAndor3/andor3App/op/adl/Andor3.adl
+
+../sns-css-4.5.0/css -nosplash -application org.csstudio.opibuilder.adl2boy.appl
+ication eigerAcquisition.adl eigerDetector.adl eigerDetectorInfo.adl eigerDetect
+orMetadata.adl eigerDetectorStatus.adl eigerFileWriter.adl eigerMonitor.adl eige
+rStream.adl eigerTop.adl
+
+# areaDetector-3-2/ADEiger/eigerApp/op$ ls -l | awk '{ print $9 }' > ~/test/eiger.txt
+
