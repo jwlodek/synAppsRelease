@@ -34,3 +34,6 @@ git clone https://github.com/freedesktop/libXp.git
 
 #git clone https://github.com/epics-extensions/medm
 wget -c https://github.com/epics-extensions/medm/archive/MEDM3_1_14.tar.gz
+
+# stream
+sudo apt-get install libpcre3-dev
