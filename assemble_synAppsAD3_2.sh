@@ -32,6 +32,8 @@ MCA=R7-7
 #MODBUS=R2-9
 MOTOR=R6-10
 #OPTICS=R2-11
+#PMAC=1-6
+TPMAC=3-12
 #QUADEM=R7-0
 SNCSEQ=2.2.5
 #SOFTGLUE=R2-8
@@ -207,10 +209,12 @@ if [[ $MEASCOMP ]];      then   get_repo epics-modules  measComp       MEASCOMP 
 if [[ $MODBUS ]];        then   get_repo epics-modules  modbus         MODBUS         $MODBUS        ; fi
 if [[ $MOTOR ]];         then   get_repo epics-modules  motor          MOTOR          $MOTOR         ; fi
 if [[ $OPTICS ]];        then   get_repo epics-modules  optics         OPTICS         $OPTICS        ; fi
+if [[ $PMAC ]];          then   get_repo dls-controls   pmac           PMAC           $PMAC          ; fi
 if [[ $QUADEM ]];        then   get_repo epics-modules  quadEM         QUADEM         $QUADEM        ; fi
 if [[ $SOFTGLUE ]];      then   get_repo epics-modules  softGlue       SOFTGLUE       $SOFTGLUE      ; fi
 if [[ $SSCAN ]];         then   get_repo epics-modules  sscan          SSCAN          $SSCAN         ; fi
 if [[ $STD ]];           then   get_repo epics-modules  std            STD            $STD           ; fi
+if [[ $TPMAC ]];         then   get_repo epics-modules  tpmac          TPMAC          $TPMAC         ; fi
 if [[ $VAC ]];           then   get_repo epics-modules  vac            VAC            $VAC           ; fi
 if [[ $VME ]];           then   get_repo epics-modules  vme            VME            $VME           ; fi
 if [[ $XXX ]];           then   get_repo epics-modules  xxx            XXX            $XXX           ; fi
