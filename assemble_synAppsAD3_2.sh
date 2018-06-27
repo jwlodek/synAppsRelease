@@ -262,7 +262,8 @@ if [[ $XXX ]];           then   get_repo epics-modules  xxx            XXX      
 
 #Blow away iocStats existing RELEASE file until SUPPORT is ever defined
 if [[ $DEVIOCSTATS ]];   then
-cd iocStats-${DEVIOCSTATS//./-}
+#cd iocStats-${DEVIOCSTATS//./-}
+cd iocStats
 cd configure
 rm -f RELEASE
 echo "EPICS_BASE=." >> RELEASE
@@ -278,7 +279,8 @@ then
 
 get_repo  epics-modules  stream  STREAM  $STREAM
 
-cd stream-${STREAM//R/}
+#cd stream-${STREAM//R/}
+cd stream
 git checkout master
 git submodule init
 git submodule update
