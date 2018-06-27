@@ -9,7 +9,7 @@ UTILS=R6-0
 DOCUMENTATION=R6-0
 
 
-BASE=R7.0.1.1
+#BASE=R7.0.1.1
 ALLENBRADLEY=2.3
 ALIVE=R1-1-0
 AREA_DETECTOR=master
@@ -108,6 +108,43 @@ full_repo()
 	echo
 }
 
+full_repo_notag()
+{
+	PROJECT=$1
+	MODULE_NAME=$2
+	RELEASE_NAME=$3
+	TAG=$4
+
+        # Remove R from TAG, and replace . with -
+        if [[ $TAG =~ [R] ]]; then
+            TAG_T=${TAG//R/}
+        else
+            TAG_T=$TAG
+        fi
+#        FOLDER_NAME=$MODULE_NAME-${TAG_T//./-}
+        FOLDER_NAME=$MODULE_NAME
+	
+	echo
+	echo "Grabbing $MODULE_NAME at tag: $TAG"
+	echo
+	
+	git clone -q https://github.com/$PROJECT/$MODULE_NAME.git $FOLDER_NAME
+	
+	#CURR=$(pwd)
+	#printf -v CURR "%q" "$(pwd)"
+	CURR=$(pwd)
+	echo $CURR
+	
+	cd $FOLDER_NAME
+#	git checkout -q $TAG
+	git checkout master
+	cd "$CURR"
+	echo "$RELEASE_NAME=\$(SUPPORT)/$FOLDER_NAME" >> ./configure/RELEASE
+	
+	echo
+}
+
+
 full_repo_submodule()
 {
 	PROJECT=$1
@@ -162,7 +199,8 @@ alias get_repo='shallow_repo'
 
 if [ "$1" == "full" ]; then
 	alias get_support='full_support'
-	alias get_repo='full_repo'
+#	alias get_repo='full_repo'
+	alias get_repo='full_repo_notag'
 fi
 
 
