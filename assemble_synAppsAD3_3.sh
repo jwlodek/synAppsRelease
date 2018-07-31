@@ -8,73 +8,47 @@ CONFIGURE=R6-0
 UTILS=R6-0
 DOCUMENTATION=R6-0
 
-<<<<<<< HEAD:assemble_synAppsAD3_3.sh
 BASE=R7.0.1.1
-#ALLENBRADLEY=2.3
-#ALIVE=R1-0-1
-AREA_DETECTOR=R3-3-2
-=======
-
-#BASE=R7.0.1.1
 ALLENBRADLEY=2.3
 ALIVE=R1-1-0
-AREA_DETECTOR=master
->>>>>>> 74b64b325e3e9b8520f15c12ae1fa87a26a32a92:assemble_synAppsAD3_2.sh
+AREA_DETECTOR=R3-3-2
 ASYN=R4-33
 AUTOSAVE=R5-9
 BUSY=R1-7
 CALC=R3-7-1
-<<<<<<< HEAD:assemble_synAppsAD3_3.sh
-#CAMAC=R2-7
-#CAPUTRECORDER=R1-6
-#DAC128V=R2-8
-#DELAYGEN=R1-1-1
-#DXP=R3-5
-DEVIOCSTATS=3.1.15
-#IP=R2-10
-IPAC=2.15
-#IP330=R2-8
-=======
 CAMAC=R2-7-1
 CAPUTRECORDER=R1-7-1
 DAC128V=R2-9
 DELAYGEN=R1-2-0
-DXP=R4-0
+DEVLIB2=2.9
+DXP=R5-0
+DXPSITORO=R1-1
 DEVIOCSTATS=3.1.15
 GALIL=V3-6
 IP=R2-19-1
 IPAC=2.15
 IP330=R2-9
->>>>>>> 74b64b325e3e9b8520f15c12ae1fa87a26a32a92:assemble_synAppsAD3_2.sh
 IPUNIDIG=R2-11
+LABJACK=master
 LOVE=R3-2-6
-LUA=R1-2
+LUA=R1-2-2
 MCA=R7-7
 MEASCOMP=R2-1
-MODBUS=R2-10-1
+MODBUS=R2-11
 MOTOR=R6-10-1
+MRFIOC2=2.2.0
 OPTICS=R2-13-1
 QUADEM=R9-1
 SNCSEQ=2.2.5
 SOFTGLUE=R2-8-1
-SOFTGLUEZYNQ=master
+SOFTGLUEZYNQ=R2-0-1
 SSCAN=R2-11-1
-<<<<<<< HEAD:assemble_synAppsAD3_3.sh
 STD=R3-5
 STREAM=R2-7-7b
-#VAC=R1-5-1
-#VME=R2-8-2
-#XXX=R5-8
-
-
-=======
-STD=master
-STREAM=R2-7-7a
 VAC=R1-7
 VME=R2-9
-YOKOGAWA_DAS=master
-XXX=master
->>>>>>> 74b64b325e3e9b8520f15c12ae1fa87a26a32a92:assemble_synAppsAD3_2.sh
+YOKOGAWA_DAS=R1-0-0
+XXX=R6-0
 
 
 shallow_repo()
@@ -265,19 +239,23 @@ if [[ $CAMAC ]];         then   get_repo epics-modules  camac          CAMAC    
 if [[ $CAPUTRECORDER ]]; then   get_repo epics-modules  caputRecorder  CAPUTRECORDER  $CAPUTRECORDER ; fi
 if [[ $DAC128V ]];       then   get_repo epics-modules  dac128V        DAC128V        $DAC128V       ; fi
 if [[ $DELAYGEN ]];      then   get_repo epics-modules  delaygen       DELAYGEN       $DELAYGEN      ; fi
+if [[ $DEVLIB2 ]];       then   get_repo epics-modules  devlib2        DEVLIB2        $DEVLIB2       ; fi
 if [[ $DXP ]];           then   get_repo epics-modules  dxp            DXP            $DXP           ; fi
+if [[ $DXPSITORO ]];     then   get_repo epics-modules  dxpSITORO      DXPSITORO      $DXPSITORO     ; fi
 if [[ $DEVIOCSTATS ]];   then   get_repo epics-modules  iocStats       DEVIOCSTATS    $DEVIOCSTATS   ; fi
 if [[ $GALIL ]];         then   get_repo motorapp       Galil-3-0      GALIL          $GALIL         ; fi
 if [[ $IP ]];            then   get_repo epics-modules  ip             IP             $IP            ; fi
 if [[ $IPAC ]];          then   get_repo epics-modules  ipac           IPAC           $IPAC          ; fi
 if [[ $IP330 ]];         then   get_repo epics-modules  ip330          IP330          $IP330         ; fi
 if [[ $IPUNIDIG ]];      then   get_repo epics-modules  ipUnidig       IPUNIDIG       $IPUNIDIG      ; fi
+if [[ $LABJACK ]];       then   get_repo epics-modules  LabJack        LABJACK        $LABJACK       ; fi
 if [[ $LOVE ]];          then   get_repo epics-modules  love           LOVE           $LOVE          ; fi
 if [[ $LUA ]];           then   get_repo epics-modules  lua            LUA            $LUA           ; fi
 if [[ $MCA ]];           then   get_repo epics-modules  mca            MCA            $MCA           ; fi
 if [[ $MEASCOMP ]];      then   get_repo epics-modules  measComp       MEASCOMP       $MEASCOMP      ; fi
 if [[ $MODBUS ]];        then   get_repo epics-modules  modbus         MODBUS         $MODBUS        ; fi
 if [[ $MOTOR ]];         then   get_repo epics-modules  motor          MOTOR          $MOTOR         ; fi
+if [[ $MRFIOC2 ]];       then   get_repo epics-modules  mrfioc2        MRFIOC2        $MRFIOC2       ; fi
 if [[ $OPTICS ]];        then   get_repo epics-modules  optics         OPTICS         $OPTICS        ; fi
 if [[ $QUADEM ]];        then   get_repo epics-modules  quadEM         QUADEM         $QUADEM        ; fi
 if [[ $SOFTGLUE ]];      then   get_repo epics-modules  softGlue       SOFTGLUE       $SOFTGLUE      ; fi
