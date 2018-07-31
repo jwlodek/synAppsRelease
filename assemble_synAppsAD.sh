@@ -3,6 +3,7 @@ shopt -s expand_aliases
 
 EPICS_BASE=/epics/base-3.15.5
 
+# assemble_synAppsAD3-3 
 SUPPORT=R6-0
 CONFIGURE=R6-0
 UTILS=R6-0
