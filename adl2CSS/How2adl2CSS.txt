@@ -1,6 +1,7 @@
 # Downloads SNS nightly
 https://ics-web.sns.ornl.gov/css/nightly
 
+# On image server it required 'export SWT_GTK3=0'
 
 ./css -nosplash -application org.csstudio.opibuilder.adl2boy.application ../areaDetector/ADAndor3/andor3App/op/adl/Andor3.adl 
 

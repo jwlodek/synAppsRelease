@@ -8,14 +8,23 @@ CONFIGURE=R6-0
 UTILS=R6-0
 DOCUMENTATION=R6-0
 
+<<<<<<< HEAD:assemble_synAppsAD3_3.sh
 BASE=R7.0.1.1
 #ALLENBRADLEY=2.3
 #ALIVE=R1-0-1
 AREA_DETECTOR=R3-3-2
+=======
+
+#BASE=R7.0.1.1
+ALLENBRADLEY=2.3
+ALIVE=R1-1-0
+AREA_DETECTOR=master
+>>>>>>> 74b64b325e3e9b8520f15c12ae1fa87a26a32a92:assemble_synAppsAD3_2.sh
 ASYN=R4-33
 AUTOSAVE=R5-9
 BUSY=R1-7
 CALC=R3-7-1
+<<<<<<< HEAD:assemble_synAppsAD3_3.sh
 #CAMAC=R2-7
 #CAPUTRECORDER=R1-6
 #DAC128V=R2-8
@@ -25,17 +34,32 @@ DEVIOCSTATS=3.1.15
 #IP=R2-10
 IPAC=2.15
 #IP330=R2-8
+=======
+CAMAC=R2-7-1
+CAPUTRECORDER=R1-7-1
+DAC128V=R2-9
+DELAYGEN=R1-2-0
+DXP=R4-0
+DEVIOCSTATS=3.1.15
+GALIL=V3-6
+IP=R2-19-1
+IPAC=2.15
+IP330=R2-9
+>>>>>>> 74b64b325e3e9b8520f15c12ae1fa87a26a32a92:assemble_synAppsAD3_2.sh
 IPUNIDIG=R2-11
-#LOVE=R3-2-5
+LOVE=R3-2-6
+LUA=R1-2
 MCA=R7-7
-#MEASCOMP=R1-3-1
-#MODBUS=R2-9
-#MOTOR=R6-9
-#OPTICS=R2-11
-#QUADEM=R7-0
+MEASCOMP=R2-1
+MODBUS=R2-10-1
+MOTOR=R6-10-1
+OPTICS=R2-13-1
+QUADEM=R9-1
 SNCSEQ=2.2.5
-#SOFTGLUE=R2-8
+SOFTGLUE=R2-8-1
+SOFTGLUEZYNQ=master
 SSCAN=R2-11-1
+<<<<<<< HEAD:assemble_synAppsAD3_3.sh
 STD=R3-5
 STREAM=R2-7-7b
 #VAC=R1-5-1
@@ -43,6 +67,14 @@ STREAM=R2-7-7b
 #XXX=R5-8
 
 
+=======
+STD=master
+STREAM=R2-7-7a
+VAC=R1-7
+VME=R2-9
+YOKOGAWA_DAS=master
+XXX=master
+>>>>>>> 74b64b325e3e9b8520f15c12ae1fa87a26a32a92:assemble_synAppsAD3_2.sh
 
 
 shallow_repo()
@@ -105,6 +137,43 @@ full_repo()
 	echo
 }
 
+full_repo_notag()
+{
+	PROJECT=$1
+	MODULE_NAME=$2
+	RELEASE_NAME=$3
+	TAG=$4
+
+        # Remove R from TAG, and replace . with -
+        if [[ $TAG =~ [R] ]]; then
+            TAG_T=${TAG//R/}
+        else
+            TAG_T=$TAG
+        fi
+#        FOLDER_NAME=$MODULE_NAME-${TAG_T//./-}
+        FOLDER_NAME=$MODULE_NAME
+	
+	echo
+	echo "Grabbing $MODULE_NAME at tag: $TAG"
+	echo
+	
+	git clone -q https://github.com/$PROJECT/$MODULE_NAME.git $FOLDER_NAME
+	
+	#CURR=$(pwd)
+	#printf -v CURR "%q" "$(pwd)"
+	CURR=$(pwd)
+	echo $CURR
+	
+	cd $FOLDER_NAME
+#	git checkout -q $TAG
+	git checkout master
+	cd "$CURR"
+	echo "$RELEASE_NAME=\$(SUPPORT)/$FOLDER_NAME" >> ./configure/RELEASE
+	
+	echo
+}
+
+
 full_repo_submodule()
 {
 	PROJECT=$1
@@ -159,7 +228,8 @@ alias get_repo='shallow_repo'
 
 if [ "$1" == "full" ]; then
 	alias get_support='full_support'
-	alias get_repo='full_repo'
+#	alias get_repo='full_repo'
+	alias get_repo='full_repo_notag'
 fi
 
 
@@ -197,11 +267,13 @@ if [[ $DAC128V ]];       then   get_repo epics-modules  dac128V        DAC128V  
 if [[ $DELAYGEN ]];      then   get_repo epics-modules  delaygen       DELAYGEN       $DELAYGEN      ; fi
 if [[ $DXP ]];           then   get_repo epics-modules  dxp            DXP            $DXP           ; fi
 if [[ $DEVIOCSTATS ]];   then   get_repo epics-modules  iocStats       DEVIOCSTATS    $DEVIOCSTATS   ; fi
+if [[ $GALIL ]];         then   get_repo motorapp       Galil-3-0      GALIL          $GALIL         ; fi
 if [[ $IP ]];            then   get_repo epics-modules  ip             IP             $IP            ; fi
 if [[ $IPAC ]];          then   get_repo epics-modules  ipac           IPAC           $IPAC          ; fi
 if [[ $IP330 ]];         then   get_repo epics-modules  ip330          IP330          $IP330         ; fi
 if [[ $IPUNIDIG ]];      then   get_repo epics-modules  ipUnidig       IPUNIDIG       $IPUNIDIG      ; fi
 if [[ $LOVE ]];          then   get_repo epics-modules  love           LOVE           $LOVE          ; fi
+if [[ $LUA ]];           then   get_repo epics-modules  lua            LUA            $LUA           ; fi
 if [[ $MCA ]];           then   get_repo epics-modules  mca            MCA            $MCA           ; fi
 if [[ $MEASCOMP ]];      then   get_repo epics-modules  measComp       MEASCOMP       $MEASCOMP      ; fi
 if [[ $MODBUS ]];        then   get_repo epics-modules  modbus         MODBUS         $MODBUS        ; fi
@@ -209,13 +281,26 @@ if [[ $MOTOR ]];         then   get_repo epics-modules  motor          MOTOR    
 if [[ $OPTICS ]];        then   get_repo epics-modules  optics         OPTICS         $OPTICS        ; fi
 if [[ $QUADEM ]];        then   get_repo epics-modules  quadEM         QUADEM         $QUADEM        ; fi
 if [[ $SOFTGLUE ]];      then   get_repo epics-modules  softGlue       SOFTGLUE       $SOFTGLUE      ; fi
+if [[ $SOFTGLUEZYNQ ]];  then   get_repo epics-modules  softGlueZynq   SOFTGLUEZYNQ   $SOFTGLUEZYNQ  ; fi
 if [[ $SSCAN ]];         then   get_repo epics-modules  sscan          SSCAN          $SSCAN         ; fi
 if [[ $STD ]];           then   get_repo epics-modules  std            STD            $STD           ; fi
 if [[ $VAC ]];           then   get_repo epics-modules  vac            VAC            $VAC           ; fi
 if [[ $VME ]];           then   get_repo epics-modules  vme            VME            $VME           ; fi
+if [[ $YOKOGAWA_DAS ]];  then   get_repo epics-modules  Yokogawa_DAS   YOKOGAWA_DAS   $YOKOGAWA_DAS  ; fi
 if [[ $XXX ]];           then   get_repo epics-modules  xxx            XXX            $XXX           ; fi
 
-
+#Blow away iocStats existing RELEASE file until SUPPORT is ever defined
+if [[ $DEVIOCSTATS ]];   then
+#cd iocStats-${DEVIOCSTATS//./-}
+cd iocStats
+cd configure
+rm -f RELEASE
+echo "EPICS_BASE=." >> RELEASE
+echo "SUPPORT=." >> RELEASE
+echo "SNCSEQ=." >> RELEASE
+echo '-include $(SUPPORT)/configure/EPICS_BASE.$(EPICS_HOST_ARCH)' >> RELEASE
+cd ../..
+fi
 
 
 if [[ $STREAM ]]
@@ -223,7 +308,8 @@ then
 
 get_repo  epics-modules  stream  STREAM  $STREAM
 
-cd stream-${STREAM//R/}
+#cd stream-${STREAM//R/}
+cd stream
 git checkout master
 git submodule init
 git submodule update
@@ -293,6 +379,18 @@ mv ether_ip-ether_ip-2-26 ether_ip-2-26
 rm -f ether_ip-2-26.tar.gz
 echo 'ETHERIP=$(SUPPORT)/ether_ip-2-26' >> ./configure/RELEASE
 
+
+fi
+
+if [[ $GALIL ]]
+then
+
+mv Galil-3-0-$GALIL/3-6 galil-3-6
+rm -Rf Galil-3-0-$GALIL
+cp galil-3-6/config/GALILRELEASE galil-3-6/configure/RELEASE
+echo 'GALIL=$(SUPPORT)/galil-3-6' >> ./configure/RELEASE
+sed -i 's/MODULE_LIST[ ]*=[ ]*MEASCOMP/MODULE_LIST = MEASCOMP GALIL/g' Makefile
+sed -i '/\$(MEASCOMP)_DEPEND_DIRS/a \$(GALIL)_DEPEND_DIRS = \$(AUTOSAVE) \$(SNCSEQ) \$(SSCAN) \$(CALC) \$(ASYN) \$(BUSY) \$(MOTOR) \$(IPAC)' Makefile
 
 fi
 
