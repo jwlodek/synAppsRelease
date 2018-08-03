@@ -39,6 +39,7 @@ MODBUS=R2-11
 MOTOR=R6-10-1
 MRFIOC2=2.2.0
 OPTICS=R2-13-1
+PMAC=2-1
 QUADEM=R9-1
 SNCSEQ=2.2.5
 SOFTGLUE=R2-8-1
@@ -183,6 +184,41 @@ full_repo_submodule()
 	echo
 }
 
+full_repo_submodule_notag()
+{
+	PROJECT=$1
+	MODULE_NAME=$2
+	RELEASE_NAME=$3
+	TAG=$4
+
+        # Remove R from TAG, and replace . with -
+        if [[ $TAG =~ [R] ]]; then
+            TAG_T=${TAG//R/}
+        else
+            TAG_T=$TAG
+        fi
+#        FOLDER_NAME=$MODULE_NAME-${TAG_T//./-}
+        FOLDER_NAME=$MODULE_NAME
+	
+	echo
+	echo "Grabbing $MODULE_NAME at tag: $TAG"
+	echo
+	
+	git clone -q --recursive https://github.com/$PROJECT/$MODULE_NAME.git $FOLDER_NAME
+	
+	#CURR=$(pwd)
+	#printf -v CURR "%q" "$(pwd)"
+	CURR=$(pwd)
+	echo $CURR
+	
+	cd $FOLDER_NAME
+#	git checkout -q $TAG
+	git checkout master
+	cd "$CURR"
+	echo "$RELEASE_NAME=\$(SUPPORT)/$FOLDER_NAME" >> ./configure/RELEASE
+	
+	echo
+}
 
 shallow_support()
 {
@@ -258,6 +294,7 @@ if [[ $MODBUS ]];        then   get_repo epics-modules  modbus         MODBUS   
 if [[ $MOTOR ]];         then   get_repo epics-modules  motor          MOTOR          $MOTOR         ; fi
 if [[ $MRFIOC2 ]];       then   get_repo epics-modules  mrfioc2        MRFIOC2        $MRFIOC2       ; fi
 if [[ $OPTICS ]];        then   get_repo epics-modules  optics         OPTICS         $OPTICS        ; fi
+if [[ $PMAC ]];          then   get_repo dls-controls   pmac           PMAC           $PMAC          ; fi
 if [[ $QUADEM ]];        then   get_repo epics-modules  quadEM         QUADEM         $QUADEM        ; fi
 if [[ $SOFTGLUE ]];      then   get_repo epics-modules  softGlue       SOFTGLUE       $SOFTGLUE      ; fi
 if [[ $SOFTGLUEZYNQ ]];  then   get_repo epics-modules  softGlueZynq   SOFTGLUEZYNQ   $SOFTGLUEZYNQ  ; fi
