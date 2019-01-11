@@ -40,4 +40,4 @@ make -sj
 cd ../areaDetector-3-3-2
 cd configure
 git clone https://github.com/jwlodek/adConfigSetup
-bash autoSetupAD.sh
+bash scripts/autoSetupAD.sh
